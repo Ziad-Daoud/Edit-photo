@@ -13,7 +13,7 @@ int main()
     {
         for (int j = 0; j < image.height; j++)
         {
-            int avg = 0;
+            unsigned int avg = 0;
             for (int k = 0; k < image.channels; k++)
             {
                 avg += image(i, j, k);
@@ -37,3 +37,4 @@ int main()
 
     return 0;
 }
+
