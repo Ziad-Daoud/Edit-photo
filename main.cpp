@@ -11,13 +11,13 @@ string filename;
 Image Filter1() {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
-            unsigned int bixcolor = 0;
+            unsigned int grey_level = 0;
             for (int k = 0; k < image.channels; k++) {
-                bixcolor += image(i, j, k);
+                grey_level += image(i, j, k);
             }
-            bixcolor /= 3;
+            grey_level /= 3;
             for (int k = 0; k < image.channels; k++) {
-                image(i, j, k) = bixcolor;
+                image(i, j, k) = grey_level;
             }
         }
     }
@@ -184,3 +184,4 @@ int main(){
     return 0;
 
 }
+
