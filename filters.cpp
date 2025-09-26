@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <cstdlib>
 using namespace std;
 #include "Image_Class.h"
@@ -156,7 +157,8 @@ int main(){
     
     
     cout << "Choose filter's number to apply: " << endl;
-    cout << "1|Grayscale   2|B&W" << endl;
+    cout << "1|Grayscale" << endl;
+    cout << "2|B&W" << endl;
     cout << "3|Invert      " << endl;
     cout << "5|Flip        " << endl;
     cout << "7|Brightness" << endl;
@@ -180,4 +182,5 @@ int main(){
     image.saveImage(newfilename);
     system(newfilename.c_str());
     return 0;
+
 }
