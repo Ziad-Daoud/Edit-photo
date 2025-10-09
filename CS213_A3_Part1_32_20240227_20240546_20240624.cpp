@@ -466,6 +466,17 @@ Image Filter4(){
 
 Image Filter12(){}
 
+Image Filter13(){
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            image(i, j, 0) = (image(i, j, 0)+255)/2;
+            image(i, j, 1) = (image(i, j, 1)+255)/2;
+            image(i, j, 2) = (image(i, j, 2)+183)/2;
+        }
+    }
+    return image;
+}
+
 Image Filter16(){
         for (int i = 0; i < image.width; i++)
         {
@@ -518,6 +529,7 @@ int main(){
     cout << "7|Brightness  8|Crop" << endl;
     cout << "9|Frame       10|Edge Detection" << endl;
     cout << "11|Resize     12|Blur" << endl;
+    cout << "13|Sunlight   14|Night purple" << endl;
     cout << "Filter number: ";
     int filterNum;
     cin >> filterNum;
@@ -610,8 +622,10 @@ int main(){
         image = Filter11(new_width, new_height, image);
     }else if (filterNum==12){
         image = Filter12();
+    }else if (filterNim==13){
+        image = Filter13();
     }
-    else if (filterNum==16){
+    else if (filterNum==14){
         image = Filter16()
     {
     else{
@@ -625,4 +639,5 @@ int main(){
     system(newfilename.c_str());
     return 0;
 }
+
 
