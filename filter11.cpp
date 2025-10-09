@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "Image_Class.h"
 using namespace std;
 
@@ -19,71 +20,77 @@ int main()
 
     int new_width, new_height;
 
-    if (answer == 1)
+    while (true)
     {
-        cout << "Enter new width: ";
-        while (true)
+        if (answer != 1 && answer != 2)
         {
-            cin >> new_width;
-            if (new_width <= 0)
+            cout << "Invalid choice. Pls enter 1 or 2: ";
+            cin >> answer;
+            continue;
+        }
+
+        if (answer == 1)
+        {
+            cout << "Enter new width: ";
+            while (true)
             {
-                cout << "Invalid input new_width must be > 0, pls enter again: ";
-                continue;
+                cin >> new_width;
+                if (new_width <= 0)
+                {
+                    cout << "Invalid input! new_width must be > 0, pls enter again: ";
+                    continue;
+                }
+                break;
             }
-            break;
-        }
 
-        cout << "Enter new height: ";
-        while (true)
-        {
-            cin >> new_height;
-            if (new_height <= 0)
+            cout << "Enter new height: ";
+            while (true)
             {
-                cout << "Invalid input new_height must be > 0, pls enter again: ";
-                continue;
+                cin >> new_height;
+                if (new_height <= 0)
+                {
+                    cout << "Invalid input! new_height must be > 0, pls enter again: ";
+                    continue;
+                }
+                break;
             }
-            break;
         }
-    }
-    else if (answer == 2)
-    {
-        double scale_factor;
-        cout << "Enter scale factor: ";
-        cin >> scale_factor;
-
-        if (scale_factor <= 0)
+        else if (answer == 2)
         {
-            cout << "Invalid scale factor!" << endl;
-            return 1;
+            double scale_factor;
+            cout << "Enter scale factor: ";
+            while (true)
+            {
+                cin >> scale_factor;
+                if (scale_factor <= 0)
+                {
+                    cout << "Invalid input! scale_factor must be > 0, pls enter again: ";
+                    continue;
+                }
+                break;
+            }
+
+            new_width = round(image.width * scale_factor);
+            new_height = round(image.height * scale_factor);
         }
-
-        new_width = static_cast<int>(image.width * scale_factor);
-        new_height = static_cast<int>(image.height * scale_factor);
-    }
-    else
-    {
-        cout << "Wrong input" << endl;
-        return 1;
+        break;
     }
 
-    // Create new image
     Image resized_image(new_width, new_height);
 
-    // Ratios
-    double x_ratio = static_cast<double>(image.width) / new_width;
-    double y_ratio = static_cast<double>(image.height) / new_height;
+    double x_ratio = 1.0 * image.width / new_width;
+    double y_ratio = 1.0 * image.height / new_height;
 
-    // Nearest Neighbor Interpolation
     for (int i = 0; i < new_width; i++)
     {
         for (int j = 0; j < new_height; j++)
         {
-            int src_x = static_cast<int>(i * x_ratio);
-            int src_y = static_cast<int>(j * y_ratio);
+            int sourceX_coordinate = i * x_ratio;
+            int sourceY_coordinate = j * y_ratio;
 
             for (int k = 0; k < image.channels; k++)
             {
-                resized_image(i, j, k) = image(src_x, src_y, k);
+                resized_image(i, j, k) = image(sourceX_coordinate, sourceY_coordinate, k);
             }
         }
     }
@@ -96,3 +103,4 @@ int main()
     cout << "Image resized and saved successfully!" << endl;
     return 0;
 }
+
