@@ -466,6 +466,34 @@ Image Filter4(){
 
 Image Filter12(){}
 
+Image Filter16(){
+        for (int i = 0; i < image.width; i++)
+        {
+            for (int j = 0; j < image.height; j++)
+            {
+                int newR = image(i, j, 0) + 40;
+                if (newR > 255)
+                {
+                    newR = 255;
+                }
+                int newG = image(i, j, 1) - 30;
+                if (newG < 0)
+                {
+                    newG = 0;
+                }
+                int newB = image(i, j, 2) + 60;
+                if (newB > 255)
+                {
+                    newB = 255;
+                }
+
+                image(i, j, 0) = newR;
+                image(i, j, 1) = newG;
+                image(i, j, 2) = newB;
+        }
+    }
+}
+
 int main(){
     cout << "-----------------------------------------" << endl;
     cout << "|Welcome to Image Processing Application|" << endl;
@@ -582,7 +610,11 @@ int main(){
         image = Filter11(new_width, new_height, image);
     }else if (filterNum==12){
         image = Filter12();
-    }else{
+    }
+    else if (filterNum==16){
+        image = Filter16()
+    {
+    else{
         cout << "Invalid filter number!" << endl;
         return -1;
     }
@@ -593,3 +625,4 @@ int main(){
     system(newfilename.c_str());
     return 0;
 }
+
