@@ -14,7 +14,6 @@ using namespace std;
 Image image;
 string filename;
     
-
 Image Filter1(){
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
@@ -464,7 +463,30 @@ Image Filter4(){
     return image;
 }
 
-Image Filter12(){}
+Image Filter12(){
+        int n = 3;  
+    int count = ((2 * n) + 1) * ((2 * n) + 1);  
+
+    Image photo(image.width, image.height);
+
+    for (int y = n; y < image.height - n; ++y) {
+        for (int x = n; x < image.width - n; ++x) {
+            for (int k = 0; k < 3; ++k) {  
+                int sum = 0;
+                for (int ky = -n; ky <= n; ++ky) {
+                    for (int kx = -n; kx <= n; ++kx) {
+                        int ny = y + ky;
+                        int nx = x + kx;
+                        sum += image(nx, ny, k); 
+                    }
+                }
+                photo(x, y, k) = sum / count;
+            }
+        }
+    }
+
+    return photo;
+}
 
 Image Filter13(){
     for (int i = 0; i < image.width; i++) {
