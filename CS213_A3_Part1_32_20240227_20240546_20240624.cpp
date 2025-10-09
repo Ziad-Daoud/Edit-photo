@@ -2,7 +2,7 @@
 
 // Ziad Yahia Zakria - 20240227 - filter 1 - filter 4 - filter 7 - filter 10 - filter 13
 // Mahmoud Ahmed Abdullah Hassanin - 20240546 - filter 2 - filter 5 - filter 8 - filter 11 - filter 16
-// Mina Hany Atef - 20240624 - filter 3 - filter 6 - filter 9 - filter 12
+// Mina Hany Atef - 20240624 - filter 3 - filter 6 - filter 9 - filter 12 - filter 15
 
 #include <iostream>
 #include <cstdlib>
@@ -525,6 +525,7 @@ Image Filter16(){
                 image(i, j, 2) = newB;
         }
     }
+    return image;
 }
 
 int main(){
@@ -644,13 +645,13 @@ int main(){
         image = Filter11(new_width, new_height, image);
     }else if (filterNum==12){
         image = Filter12();
-    }else if (filterNim==13){
+    }else if (filterNum==13){
         image = Filter13();
     }else if (filterNum==15){
         image = Filter15();
     }
     else if (filterNum==14){
-        image = Filter16()
+        image = Filter16();
     }
     else{
         cout << "Invalid filter number!" << endl;
@@ -663,7 +664,3 @@ int main(){
     system(newfilename.c_str());
     return 0;
 }
-
-
-
-
