@@ -477,6 +477,28 @@ Image Filter13(){
     return image;
 }
 
+int randomBetween(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+
+Image Filter15(){
+
+    Image photo = image;
+
+    int Space = 4; 
+
+    for (int j = 0; j < photo.height; j += Space) {
+        for (int i = 0; i < photo.width; ++i) {
+            for (int k = 0; k < 3; ++k) { 
+                if (photo(i, j, k) > 64) {
+                    photo(i, j, k) = min(photo(i, j, k) + randomBetween(192, 255), 255);
+                }
+            }
+        }
+    }
+    return photo;
+}
+
 Image Filter16(){
         for (int i = 0; i < image.width; i++)
         {
@@ -624,10 +646,12 @@ int main(){
         image = Filter12();
     }else if (filterNim==13){
         image = Filter13();
+    }else if (filterNum==15){
+        image = Filter15();
     }
     else if (filterNum==14){
         image = Filter16()
-    {
+    }
     else{
         cout << "Invalid filter number!" << endl;
         return -1;
@@ -639,6 +663,7 @@ int main(){
     system(newfilename.c_str());
     return 0;
 }
+
 
 
 
